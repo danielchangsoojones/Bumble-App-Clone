@@ -12,6 +12,10 @@
 		92836A611DF5BCA20040B90F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92836A5F1DF5BCA20040B90F /* Main.storyboard */; };
 		92836A631DF5BCA20040B90F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92836A621DF5BCA20040B90F /* Assets.xcassets */; };
 		92836A661DF5BCA20040B90F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92836A641DF5BCA20040B90F /* LaunchScreen.storyboard */; };
+		92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */; };
+		92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */; };
+		92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A721DF5F2B30040B90F /* BumbleScrollView.swift */; };
+		E629FC2CB9B16D577522718A /* Pods_BumbleTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,12 @@
 		92836A621DF5BCA20040B90F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92836A651DF5BCA20040B90F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92836A671DF5BCA20040B90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleImageHolderView.swift; sourceTree = "<group>"; };
+		92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlideShowView.swift; sourceTree = "<group>"; };
+		92836A721DF5F2B30040B90F /* BumbleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleScrollView.swift; sourceTree = "<group>"; };
+		93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.debug.xcconfig"; sourceTree = "<group>"; };
+		BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumbleTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E629FC2CB9B16D577522718A /* Pods_BumbleTesting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +51,8 @@
 			children = (
 				92836A5A1DF5BCA20040B90F /* BumbleTesting */,
 				92836A591DF5BCA20040B90F /* Products */,
+				F4C398796FA85DEE5FB1A8CC /* Pods */,
+				C0D6DC4F6DD131A391EAFA56 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +67,7 @@
 		92836A5A1DF5BCA20040B90F /* BumbleTesting */ = {
 			isa = PBXGroup;
 			children = (
+				92836A6D1DF5BCDD0040B90F /* Views */,
 				92836A5B1DF5BCA20040B90F /* AppDelegate.swift */,
 				92836A5D1DF5BCA20040B90F /* ViewController.swift */,
 				92836A5F1DF5BCA20040B90F /* Main.storyboard */,
@@ -64,6 +78,33 @@
 			path = BumbleTesting;
 			sourceTree = "<group>";
 		};
+		92836A6D1DF5BCDD0040B90F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */,
+				92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */,
+				92836A721DF5F2B30040B90F /* BumbleScrollView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C0D6DC4F6DD131A391EAFA56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4C398796FA85DEE5FB1A8CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */,
+				C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92836A6A1DF5BCA20040B90F /* Build configuration list for PBXNativeTarget "BumbleTesting" */;
 			buildPhases = (
+				827FE7CC228DFBD2F9667468 /* [CP] Check Pods Manifest.lock */,
 				92836A541DF5BCA20040B90F /* Sources */,
 				92836A551DF5BCA20040B90F /* Frameworks */,
 				92836A561DF5BCA20040B90F /* Resources */,
+				466A517C6B489A56DFF7B047 /* [CP] Embed Pods Frameworks */,
+				C44155A744F210AEE95C1450 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,11 +175,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		466A517C6B489A56DFF7B047 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		827FE7CC228DFBD2F9667468 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C44155A744F210AEE95C1450 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		92836A541DF5BCA20040B90F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */,
+				92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */,
+				92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */,
 				92836A5E1DF5BCA20040B90F /* ViewController.swift in Sources */,
 				92836A5C1DF5BCA20040B90F /* AppDelegate.swift in Sources */,
 			);
@@ -258,6 +353,7 @@
 		};
 		92836A6B1DF5BCA20040B90F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BumbleTesting/Info.plist;
@@ -270,6 +366,7 @@
 		};
 		92836A6C1DF5BCA20040B90F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BumbleTesting/Info.plist;
@@ -299,6 +396,7 @@
 				92836A6C1DF5BCA20040B90F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

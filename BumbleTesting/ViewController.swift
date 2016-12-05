@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        verticalSlideShowViewSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +20,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    fileprivate func verticalSlideShowViewSetup() {
+        let vertSlideView = VerticalSlideShowView(imageFiles: [#imageLiteral(resourceName: "unsplashGirl140"), #imageLiteral(resourceName: "usagirl"), #imageLiteral(resourceName: "windowGirl")], frame: self.view.bounds)
+        self.view.addSubview(vertSlideView)
+    }
 }
 
