@@ -1,0 +1,15 @@
+PODS:
+  - Cheetah (0.4.1)
+  - SnapKit (3.0.2)
+
+DEPENDENCIES:
+  - Cheetah
+  - SnapKit (~> 3.0)
+
+SPEC CHECKSUMS:
+  Cheetah: 14e1eff625b9e02ffa8d3fd1157236d6f20d71be
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+
+PODFILE CHECKSUM: c7d9c6940d4e3f158f9822ce88e4b2d0a1990834
+
+COCOAPODS: 1.1.1

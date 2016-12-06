@@ -1,0 +1,6 @@
+framework module Cheetah {
+  umbrella header "Cheetah-umbrella.h"
+
+  export *
+  module * { export * }
+}

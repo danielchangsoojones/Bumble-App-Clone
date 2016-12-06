@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cheetah
 
 //rename to VerticalSlideView
 class VerticalSlideShowView: UIView {
@@ -18,21 +19,34 @@ class VerticalSlideShowView: UIView {
     
     fileprivate var scrollDirection: Direction = .zero
     var theBumbleScrollView: BumbleScrollView!
+    var theCardDetailView: CardDetailView!
     
     init(imageFiles: [Any], frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.green
         scrollViewSetup(imageFiles: imageFiles)
+        infoHolderViewSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func createView(color: UIColor, frame: CGRect) -> UIView {
-        let view = UIView(frame: frame)
-        view.backgroundColor = color
-        return view
+    fileprivate func infoHolderViewSetup() {
+        let infoHolderView = CardDetailBackgroundHolderView(frame: self.bounds)
+        self.addSubview(infoHolderView)
+    }
+    
+    fileprivate func cardDetailViewSetup() {
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
+        view.backgroundColor = UIColor.green
+        
+        theCardDetailView.backgroundColor = UIColor.red
+        view.addSubview(theCardDetailView)
+        
+        self.addSubview(view)
+        
     }
     
     fileprivate func scrollViewSetup(imageFiles: [Any]) {
@@ -47,6 +61,9 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
         if scrollDirection == .zero {
             theBumbleScrollView.finishScrollToProperPage()
         }
+        theCardDetailView.cheetah
+            .frame(CGRect(x: 0, y: self.frame.midY, width: theCardDetailView.frame.width, height: 500)).duration(0.3)
+            .run()
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {

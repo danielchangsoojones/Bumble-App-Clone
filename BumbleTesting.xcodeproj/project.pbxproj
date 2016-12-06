@@ -15,6 +15,9 @@
 		92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */; };
 		92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */; };
 		92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A721DF5F2B30040B90F /* BumbleScrollView.swift */; };
+		92836A751DF611C60040B90F /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A741DF611C60040B90F /* CardDetailView.swift */; };
+		92836A781DF65D660040B90F /* CardDetailBackgroundHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */; };
+		92836A7A1DF65E6F0040B90F /* CardPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */; };
 		E629FC2CB9B16D577522718A /* Pods_BumbleTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleImageHolderView.swift; sourceTree = "<group>"; };
 		92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlideShowView.swift; sourceTree = "<group>"; };
 		92836A721DF5F2B30040B90F /* BumbleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleScrollView.swift; sourceTree = "<group>"; };
+		92836A741DF611C60040B90F /* CardDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailBackgroundHolderView.swift; sourceTree = "<group>"; };
+		92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.debug.xcconfig"; sourceTree = "<group>"; };
 		BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumbleTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,11 +87,22 @@
 		92836A6D1DF5BCDD0040B90F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92836A761DF6595C0040B90F /* Card Detail */,
 				92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */,
 				92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */,
 				92836A721DF5F2B30040B90F /* BumbleScrollView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		92836A761DF6595C0040B90F /* Card Detail */ = {
+			isa = PBXGroup;
+			children = (
+				92836A741DF611C60040B90F /* CardDetailView.swift */,
+				92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */,
+				92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */,
+			);
+			name = "Card Detail";
 			sourceTree = "<group>";
 		};
 		C0D6DC4F6DD131A391EAFA56 /* Frameworks */ = {
@@ -140,6 +157,7 @@
 				TargetAttributes = {
 					92836A571DF5BCA20040B90F = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 3L37GT3T8D;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -229,8 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */,
+				92836A7A1DF65E6F0040B90F /* CardPanGestureRecognizer.swift in Sources */,
+				92836A781DF65D660040B90F /* CardDetailBackgroundHolderView.swift in Sources */,
 				92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */,
 				92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */,
+				92836A751DF611C60040B90F /* CardDetailView.swift in Sources */,
 				92836A5E1DF5BCA20040B90F /* ViewController.swift in Sources */,
 				92836A5C1DF5BCA20040B90F /* AppDelegate.swift in Sources */,
 			);
@@ -356,7 +377,9 @@
 			baseConfigurationReference = 93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3L37GT3T8D;
 				INFOPLIST_FILE = BumbleTesting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = buttholio.BumbleTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,7 +392,9 @@
 			baseConfigurationReference = C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3L37GT3T8D;
 				INFOPLIST_FILE = BumbleTesting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = buttholio.BumbleTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
