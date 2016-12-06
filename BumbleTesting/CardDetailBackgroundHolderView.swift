@@ -64,7 +64,7 @@ class CardDetailBackgroundHolderView: UIView {
                 let heightDiffFromOriginalHeight = (pointOfTouch.y - self.theCardDetailView.originalFrame.height)
                 let touchPercentOfMaxHeight = heightDiffFromOriginalHeight / self.theCardDetailView.maxFrame.height
                 let newFrame = CGRect(x: detailFrame.minX, y: pointOfTouch.y, width: detailFrame.width, height: detailFrame.maxY - pointOfTouch.y)
-                let targetInset = touchPercentOfMaxHeight * self.theCardDetailView.insetDifference
+//                let targetInset = touchPercentOfMaxHeight * self.theCardDetailView.insetDifference
                 
                 
                 let inset = (touchPercentOfMaxHeight * self.theCardDetailView.insetDifference) * directionMultipler
