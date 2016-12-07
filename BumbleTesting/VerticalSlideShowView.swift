@@ -18,13 +18,15 @@ class VerticalSlideShowView: UIView {
     
     fileprivate var scrollDirection: Direction = .zero
     var theBumbleScrollView: BumbleScrollView!
-    var theCardDetailView: CardDetailView!
+//    var theCardDetailView: CardDetailView!
+    var theCardDetailBackgroundHolderView: CardDetailBackgroundHolderView!
     
     init(imageFiles: [Any], frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.green
         scrollViewSetup(imageFiles: imageFiles)
         infoHolderViewSetup()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,20 +34,8 @@ class VerticalSlideShowView: UIView {
     }
     
     fileprivate func infoHolderViewSetup() {
-        let infoHolderView = CardDetailBackgroundHolderView(frame: self.bounds)
-        self.addSubview(infoHolderView)
-    }
-    
-    fileprivate func cardDetailViewSetup() {
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        view.backgroundColor = UIColor.green
-        
-        theCardDetailView.backgroundColor = UIColor.red
-        view.addSubview(theCardDetailView)
-        
-        self.addSubview(view)
-        
+        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds, delegate: self)
+        self.addSubview(theCardDetailBackgroundHolderView)
     }
     
     fileprivate func scrollViewSetup(imageFiles: [Any]) {
