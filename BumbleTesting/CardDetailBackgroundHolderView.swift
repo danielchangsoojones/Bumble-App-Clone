@@ -75,11 +75,8 @@ class CardDetailBackgroundHolderView: UIView {
                     currentTouchY = closedY
                 }
                 
-                
-                
                 let percentOpened = (closedY - currentTouchY) / (closedY - openY)
                 let inset = (1 - percentOpened) * (openInset - closedInset) + closedInset
-                print(inset)
                 self.theCardDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
             })
     }
