@@ -36,7 +36,7 @@ class BumbleScrollView: UIScrollView {
         super.init(frame: frame)
         contentSize = CGSize(width: frame.width, height: 0)
         self.delegate = delegate
-//        decelerationRate = UIScrollViewDecelerationRateFast
+        showsVerticalScrollIndicator = false
         addImageHolders(imageFiles: imageFiles)
     }
     

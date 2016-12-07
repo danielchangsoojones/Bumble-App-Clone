@@ -26,7 +26,6 @@ class CardDetailView: UIView {
         }
     }
     
-    
     override var frame: CGRect {
         didSet {
             if frame.height <= originalFrame.height {

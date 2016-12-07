@@ -32,6 +32,20 @@ class CardDetailBackgroundHolderView: UIView {
         theCardDetailView.setMaxFrame()
     }
     
+    //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if theCardDetailView.frame.contains(point) {
+            return true
+        } else if theCardDetailView.isOpen {
+            return true
+        }
+        //pass the tap onto other views
+        return false
+    }
+}
+
+//handle tap
+extension CardDetailBackgroundHolderView {
     fileprivate func addBackgroundTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
         self.addGestureRecognizer(tap)
@@ -48,17 +62,6 @@ class CardDetailBackgroundHolderView: UIView {
         } else {
             animateToMaxFrame()
         }
-    }
-    
-    //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if theCardDetailView.frame.contains(point) {
-            return true
-        } else if theCardDetailView.isOpen {
-            return true
-        }
-        //pass the tap onto other views
-        return false
     }
 }
 
