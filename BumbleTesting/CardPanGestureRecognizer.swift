@@ -8,16 +8,7 @@
 
 import UIKit.UIGestureRecognizerSubclass
 
-protocol CardPanGestureDelegate {
-    func isCardOpen() -> Bool
-}
-
 class CardPanGestureRecognizer: UIPanGestureRecognizer {
-    var isCardOpen: Bool {
-        get {
-            return cardPanDelegate?.isCardOpen() ?? false
-        }
-    }
     var direction: UISwipeGestureRecognizerDirection? {
         get {
             let theVelocity : CGPoint = velocity(in: self.view!)
@@ -31,20 +22,10 @@ class CardPanGestureRecognizer: UIPanGestureRecognizer {
     }
     var haveStartedCardOpenDrag: Bool = false
     
-    
-    var cardPanDelegate: CardPanGestureDelegate?
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
             if direction == .down && !haveStartedCardOpenDrag {
                 self.state = .failed
-            } else if direction == .up {
-                haveStartedCardOpenDrag = true
             }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
-        super.touchesEnded(touches, with: event)
-        haveStartedCardOpenDrag = isCardOpen
     }
 }

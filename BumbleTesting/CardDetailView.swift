@@ -9,11 +9,7 @@
 import Foundation
 import UIKit
 
-class CardDetailView: UIView {
-    private struct CardDetailConstants {
-        static let maxFrameInset: CGFloat = 10
-    }
-    
+class CardDetailView: UIView {    
     var isAtMinimumSize: Bool {
         get {
             return self.frame == originalFrame
@@ -29,6 +25,17 @@ class CardDetailView: UIView {
             return originalFrameInset - maxFrameInset
         }
     }
+    var finishSwipeThresholdY: CGFloat {
+        get {
+            return maxFrame.maxY * 0.75
+        }
+    }
+    var isOpen: Bool {
+        get {
+            return !isAtMinimumSize
+        }
+    }
+    
     
     override var frame: CGRect {
         didSet {

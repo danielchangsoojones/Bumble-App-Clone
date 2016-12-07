@@ -29,7 +29,6 @@ class VerticalSlideShowView: UIView {
         
         let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
         pan.delegate = self
-        pan.cardPanDelegate = self
         //        self.isUserInteractionEnabled = false
         self.addGestureRecognizer(pan)
         
@@ -38,15 +37,11 @@ class VerticalSlideShowView: UIView {
     }
     
     func isPanning(pan: UIPanGestureRecognizer) {
-        if let cardPan = pan as? CardPanGestureRecognizer {
-            let pointOfTouch = pan.location(in: self)
-            theCardDetailBackgroundHolderView.animateDetailView(pointOfTouch: pointOfTouch)
+        let pointOfTouch = pan.location(in: self)
         
-            
-//            if pan.state == .ended && theCardDetailView.isAtMinimumSize {
-//                cardPan.shouldPanDownwards = false
-//            }
-            
+        if let cardPan = pan as? CardPanGestureRecognizer {
+            theCardDetailBackgroundHolderView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
+            cardPan.haveStartedCardOpenDrag = theCardDetailView.isOpen
         }
     }
     
@@ -100,17 +95,13 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
     }
 }
 
-extension VerticalSlideShowView: UIGestureRecognizerDelegate, CardPanGestureDelegate {
+extension VerticalSlideShowView: UIGestureRecognizerDelegate {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if theBumbleScrollView.isAtFinalPage || isCardOpen() {
+        if theBumbleScrollView.isAtFinalPage || theCardDetailView.isOpen {
             return true
         } else {
             return false
         }
-    }
-    
-    func isCardOpen() -> Bool {
-        return !theCardDetailView.isAtMinimumSize
     }
 }
 

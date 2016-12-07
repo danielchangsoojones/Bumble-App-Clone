@@ -19,7 +19,7 @@ class CardDetailBackgroundHolderView: UIView {
         self.alpha = 0.2
         isUserInteractionEnabled = false
         cardDetailSetup()
-        addPanGesture()
+        addTapGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,38 +29,57 @@ class CardDetailBackgroundHolderView: UIView {
     fileprivate func cardDetailSetup() {
         theCardDetailView = CardDetailView(frameWidth: self.frame.width, frameMinY: self.bounds.maxY - 100, height: 100)
         theCardDetailView.backgroundColor = UIColor.red
+        theCardDetailView.isUserInteractionEnabled = true
         self.addSubview(theCardDetailView)
         theCardDetailView.setMaxFrame()
     }
     
-    fileprivate func addPanGesture() {
-        let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
-        self.addGestureRecognizer(pan)
-        
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
-                theCardDetailView.addGestureRecognizer(tap)
-        
+    fileprivate func addTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
+        theCardDetailView.addGestureRecognizer(tap)
     }
     
     func handleDetailTap(_ sender: UIGestureRecognizer) {
         print("the bottom area just got tappppped")
     }
     
-    func isPanning(pan: UIPanGestureRecognizer) {
-        
-        
-        if let cardPan = pan as? CardPanGestureRecognizer {
-            
-            
-//            if pan.state == .ended && theCardDetailView.isAtMinimumSize {
-//                cardPan.shouldPanDownwards = false
-//            }
-            let pointOfTouch = pan.location(in: self)
-            animateDetailView(pointOfTouch: pointOfTouch)
+    func pan(touchPoint: CGPoint, direction: UISwipeGestureRecognizerDirection?, state: UIGestureRecognizerState) {
+        if state == .ended {
+            if let direction = direction {
+                finishSwipe(direction: direction)
+            } else {
+                finishNonVelocityDrag()
+            }
+        } else {
+            animateDetailView(pointOfTouch: touchPoint)
         }
     }
     
-    func animateDetailView(pointOfTouch: CGPoint) {
+    fileprivate func finishSwipe(direction: UISwipeGestureRecognizerDirection) {
+        if direction == .up {
+            animateToMaxFrame()
+        } else if direction == .down {
+            animateToOriginalFrame()
+        }
+    }
+    
+    fileprivate func finishNonVelocityDrag() {
+        if theCardDetailView.frame.minY <= theCardDetailView.finishSwipeThresholdY {
+            animateToMaxFrame()
+        } else {
+            animateToOriginalFrame()
+        }
+    }
+    
+    fileprivate func animateToMaxFrame() {
+        animateDetailView(pointOfTouch: theCardDetailView.maxFrame.origin)
+    }
+    
+    fileprivate func animateToOriginalFrame() {
+        animateDetailView(pointOfTouch: theCardDetailView.originalFrame.origin)
+    }
+    
+    fileprivate func animateDetailView(pointOfTouch: CGPoint) {
             UIView.animate(withDuration: 0.3, animations: {
                 //open being when the cardDetail is showing its inner contents
                 let openY = self.theCardDetailView.maxFrame.minY
