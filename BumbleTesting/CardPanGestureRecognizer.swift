@@ -9,29 +9,18 @@
 import UIKit.UIGestureRecognizerSubclass
 
 protocol CardPanGestureDelegate {
-    func shouldOnlyPanUpwards() -> Bool
+    func isCardOpen() -> Bool
 }
 
 class CardPanGestureRecognizer: UIPanGestureRecognizer {
-    var shouldFail: Bool = false
-    var shouldOnlyPanUpwards: Bool = false
-    var shouldPanDownwards: Bool = false
-    
-    var cardPanDelegate: CardPanGestureDelegate?
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
-        super.touchesMoved(touches, with: event)
-        if let cardPanDelegate = cardPanDelegate {
-            if direction == .down && cardPanDelegate.shouldOnlyPanUpwards() {
-                self.state = .failed
-            }
+    var isCardOpen: Bool {
+        get {
+            return cardPanDelegate?.isCardOpen() ?? false
         }
     }
-    
     var direction: UISwipeGestureRecognizerDirection? {
         get {
             let theVelocity : CGPoint = velocity(in: self.view!)
-            print(theVelocity)
             if theVelocity.y < 0 {
                 return .up
             } else if theVelocity.y > 0 {
@@ -39,5 +28,23 @@ class CardPanGestureRecognizer: UIPanGestureRecognizer {
             }
             return nil
         }
+    }
+    var haveStartedCardOpenDrag: Bool = false
+    
+    
+    var cardPanDelegate: CardPanGestureDelegate?
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesMoved(touches, with: event)
+            if direction == .down && !haveStartedCardOpenDrag {
+                self.state = .failed
+            } else if direction == .up {
+                haveStartedCardOpenDrag = true
+            }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
+        haveStartedCardOpenDrag = isCardOpen
     }
 }

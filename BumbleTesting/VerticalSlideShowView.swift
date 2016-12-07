@@ -102,21 +102,15 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
 
 extension VerticalSlideShowView: UIGestureRecognizerDelegate, CardPanGestureDelegate {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if theBumbleScrollView.isAtFinalPage {
+        if theBumbleScrollView.isAtFinalPage || isCardOpen() {
             return true
         } else {
             return false
         }
     }
     
-    func shouldOnlyPanUpwards() -> Bool {
-        if !theCardDetailView.isAtMinimumSize {
-            return false
-        } else if theBumbleScrollView.isAtFinalPage {
-            return true
-        }
-        
-        return false
+    func isCardOpen() -> Bool {
+        return !theCardDetailView.isAtMinimumSize
     }
 }
 

@@ -32,11 +32,11 @@ class CardDetailView: UIView {
     
     override var frame: CGRect {
         didSet {
-//            if frame.height <= originalFrame.height {
-//                super.frame = originalFrame
-//            } else if frame.height >= maxFrame.height {
-//                super.frame = maxFrame
-//            }
+            if frame.height <= originalFrame.height {
+                super.frame = originalFrame
+            } else if frame.height >= maxFrame.height {
+                super.frame = maxFrame
+            }
         }
     }
     

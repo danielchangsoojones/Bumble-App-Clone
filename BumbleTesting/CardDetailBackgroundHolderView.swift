@@ -52,9 +52,9 @@ class CardDetailBackgroundHolderView: UIView {
         if let cardPan = pan as? CardPanGestureRecognizer {
             
             
-            if pan.state == .ended && theCardDetailView.isAtMinimumSize {
-                cardPan.shouldPanDownwards = false
-            }
+//            if pan.state == .ended && theCardDetailView.isAtMinimumSize {
+//                cardPan.shouldPanDownwards = false
+//            }
             let pointOfTouch = pan.location(in: self)
             animateDetailView(pointOfTouch: pointOfTouch)
         }
