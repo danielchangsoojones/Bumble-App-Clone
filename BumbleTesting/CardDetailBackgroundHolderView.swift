@@ -16,10 +16,9 @@ class CardDetailBackgroundHolderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.black.withAlphaComponent(minAlpha)
-        //user interaction needs to be disabled because that is the only way we could pass touches to the scrollView below this background view
-        isUserInteractionEnabled = false
         cardDetailSetup()
-        addTapGesture()
+        addCardDetailTapGesture()
+        addBackgroundTapGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,13 +32,33 @@ class CardDetailBackgroundHolderView: UIView {
         theCardDetailView.setMaxFrame()
     }
     
-    fileprivate func addTapGesture() {
+    fileprivate func addBackgroundTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
+        self.addGestureRecognizer(tap)
+    }
+    
+    fileprivate func addCardDetailTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
         theCardDetailView.addGestureRecognizer(tap)
     }
     
     func handleDetailTap(_ sender: UIGestureRecognizer) {
-        print("the bottom area just got tappppped")
+        if theCardDetailView.isOpen {
+            animateToOriginalFrame()
+        } else {
+            animateToMaxFrame()
+        }
+    }
+    
+    //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if theCardDetailView.frame.contains(point) {
+            return true
+        } else if theCardDetailView.isOpen {
+            return true
+        }
+        //pass the tap onto other views
+        return false
     }
 }
 
