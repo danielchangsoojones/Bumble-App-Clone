@@ -16,6 +16,7 @@ class CardDetailBackgroundHolderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.purple
+//        self.alpha = 0.2
         cardDetailSetup()
         addPanGesture()
     }
@@ -33,45 +34,54 @@ class CardDetailBackgroundHolderView: UIView {
     
     fileprivate func addPanGesture() {
         let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+//        self.isUserInteractionEnabled = false
         self.addGestureRecognizer(pan)
         
-//                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
-//                theCardDetailView.addGestureRecognizer(tap)
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
+                theCardDetailView.addGestureRecognizer(tap)
         
     }
     
-//    func handleDetailTap(_ sender: UIGestureRecognizer) {
-//        self.theCardDetailView.frame = CGRect(x: 0, y: 50, width: self.frame.width, height: 50)
-//    }
+    func handleDetailTap(_ sender: UIGestureRecognizer) {
+        print("the bottom area just got tappppped")
+    }
     
     func isPanning(pan: UIPanGestureRecognizer) {
+        
+        
         if let cardPan = pan as? CardPanGestureRecognizer {
+            
+            
             if pan.state == .ended && theCardDetailView.isAtMinimumSize {
                 cardPan.shouldPanDownwards = false
             }
             let pointOfTouch = pan.location(in: self)
-            animateDetailView(direction: cardPan.direction, pointOfTouch: pointOfTouch)
-            
+            animateDetailView(pointOfTouch: pointOfTouch)
         }
     }
     
-    fileprivate func animateDetailView(direction: UISwipeGestureRecognizerDirection?, pointOfTouch: CGPoint) {
-        if let direction = direction {
-            let directionMultipler: CGFloat = direction == .up ? 1 : -1
+    fileprivate func animateDetailView(pointOfTouch: CGPoint) {
             UIView.animate(withDuration: 0.3, animations: {
-                let detailFrame = self.theCardDetailView.frame
-                ///TODO: what if point of touch is > max height
-                let heightDiffFromOriginalHeight = (pointOfTouch.y - self.theCardDetailView.originalFrame.height)
-                let touchPercentOfMaxHeight = heightDiffFromOriginalHeight / self.theCardDetailView.maxFrame.height
-                let newFrame = CGRect(x: detailFrame.minX, y: pointOfTouch.y, width: detailFrame.width, height: detailFrame.maxY - pointOfTouch.y)
-//                let targetInset = touchPercentOfMaxHeight * self.theCardDetailView.insetDifference
+                //open being when the cardDetail is showing its inner contents
+                let openY = self.theCardDetailView.maxFrame.minY
+                let closedY = self.theCardDetailView.originalFrame.minY
+                let openInset = self.theCardDetailView.originalFrameInset
+                let closedInset = self.theCardDetailView.maxFrameInset
+                
+                var currentTouchY = pointOfTouch.y
+                if currentTouchY < openY {
+                    currentTouchY = openY
+                } else if currentTouchY > closedY {
+                    currentTouchY = closedY
+                }
                 
                 
-                let inset = (touchPercentOfMaxHeight * self.theCardDetailView.insetDifference) * directionMultipler
-                let insetFrame = newFrame.insetBy(dx: inset, dy: inset)
-                self.theCardDetailView.frame = insetFrame
+                
+                let percentOpened = (closedY - currentTouchY) / (closedY - openY)
+                let inset = (1 - percentOpened) * (openInset - closedInset) + closedInset
+                print(inset)
+                self.theCardDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
             })
-        }
     }
 
 }

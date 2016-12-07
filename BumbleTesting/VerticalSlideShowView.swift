@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cheetah
 
 //rename to VerticalSlideView
 class VerticalSlideShowView: UIView {
@@ -61,9 +60,6 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
         if scrollDirection == .zero {
             theBumbleScrollView.finishScrollToProperPage()
         }
-        theCardDetailView.cheetah
-            .frame(CGRect(x: 0, y: self.frame.midY, width: theCardDetailView.frame.width, height: 500)).duration(0.3)
-            .run()
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
