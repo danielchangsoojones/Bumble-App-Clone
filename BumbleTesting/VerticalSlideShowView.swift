@@ -94,7 +94,7 @@ extension VerticalSlideShowView: UIGestureRecognizerDelegate {
         if let cardPan = pan as? CardPanGestureRecognizer {
             theCardDetailBackgroundHolderView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
             
-            if pan.state == .ended {
+            if pan.state == .ended || pan.state == .changed {
                 cardPan.haveStartedCardOpenDrag = theCardDetailView.isOpen
             }
         }

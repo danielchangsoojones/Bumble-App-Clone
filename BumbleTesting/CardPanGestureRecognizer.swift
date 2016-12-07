@@ -22,15 +22,10 @@ class CardPanGestureRecognizer: UIPanGestureRecognizer {
     }
     var haveStartedCardOpenDrag: Bool = false
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        super.touchesBegan(touches, with: event)
-        haveStartedCardOpenDrag = true
-    }
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
-            if direction == .down && !haveStartedCardOpenDrag {
-                self.state = .failed
-            }
+        if direction == .down && !haveStartedCardOpenDrag {
+            self.state = .failed
+        }
     }
 }
