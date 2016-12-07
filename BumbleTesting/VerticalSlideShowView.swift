@@ -18,7 +18,7 @@ class VerticalSlideShowView: UIView {
     
     fileprivate var scrollDirection: Direction = .zero
     var theBumbleScrollView: BumbleScrollView!
-//    var theCardDetailView: CardDetailView!
+    var theCardDetailView: CardDetailView!
     var theCardDetailBackgroundHolderView: CardDetailBackgroundHolderView!
     
     init(imageFiles: [Any], frame: CGRect) {
@@ -27,6 +27,27 @@ class VerticalSlideShowView: UIView {
         scrollViewSetup(imageFiles: imageFiles)
         infoHolderViewSetup()
         
+        let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+        pan.delegate = self
+        pan.cardPanDelegate = self
+        //        self.isUserInteractionEnabled = false
+        self.addGestureRecognizer(pan)
+        
+        theBumbleScrollView.panGestureRecognizer.require(toFail: pan)
+
+    }
+    
+    func isPanning(pan: UIPanGestureRecognizer) {
+        if let cardPan = pan as? CardPanGestureRecognizer {
+            let pointOfTouch = pan.location(in: self)
+            theCardDetailBackgroundHolderView.animateDetailView(pointOfTouch: pointOfTouch)
+        
+            
+//            if pan.state == .ended && theCardDetailView.isAtMinimumSize {
+//                cardPan.shouldPanDownwards = false
+//            }
+            
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +55,8 @@ class VerticalSlideShowView: UIView {
     }
     
     fileprivate func infoHolderViewSetup() {
-        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds, delegate: self)
+        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds)
+        theCardDetailView = theCardDetailBackgroundHolderView.theCardDetailView
         self.addSubview(theCardDetailBackgroundHolderView)
     }
     
@@ -75,6 +97,26 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         theBumbleScrollView.beginningContentOffsetPriorToSwipe = scrollView.contentOffset
+    }
+}
+
+extension VerticalSlideShowView: UIGestureRecognizerDelegate, CardPanGestureDelegate {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if theBumbleScrollView.isAtFinalPage {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func shouldOnlyPanUpwards() -> Bool {
+        if !theCardDetailView.isAtMinimumSize {
+            return false
+        } else if theBumbleScrollView.isAtFinalPage {
+            return true
+        }
+        
+        return false
     }
 }
 

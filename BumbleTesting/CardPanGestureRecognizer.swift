@@ -8,26 +8,33 @@
 
 import UIKit.UIGestureRecognizerSubclass
 
+protocol CardPanGestureDelegate {
+    func shouldOnlyPanUpwards() -> Bool
+}
+
 class CardPanGestureRecognizer: UIPanGestureRecognizer {
+    var shouldFail: Bool = false
+    var shouldOnlyPanUpwards: Bool = false
     var shouldPanDownwards: Bool = false
+    
+    var cardPanDelegate: CardPanGestureDelegate?
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
-        let theVelocity : CGPoint = velocity(in: self.view!)
-        if theVelocity.y > 0 && !shouldPanDownwards {
-            //swiping downwards, but shouldn't be
-            self.state = .failed
-        } else if theVelocity.y < 0 {
-            shouldPanDownwards = true
+        if let cardPanDelegate = cardPanDelegate {
+            if direction == .down && cardPanDelegate.shouldOnlyPanUpwards() {
+                self.state = .failed
+            }
         }
     }
     
     var direction: UISwipeGestureRecognizerDirection? {
         get {
             let theVelocity : CGPoint = velocity(in: self.view!)
-            if theVelocity.y > 0 {
+            print(theVelocity)
+            if theVelocity.y < 0 {
                 return .up
-            } else if theVelocity.y < 0 {
+            } else if theVelocity.y > 0 {
                 return .down
             }
             return nil

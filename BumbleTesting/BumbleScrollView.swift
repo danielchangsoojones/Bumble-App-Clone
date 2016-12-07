@@ -18,16 +18,25 @@ class BumbleScrollView: UIScrollView {
                 return (max + min) / 2
             }
         }
+        
+        func contains(num: CGFloat) -> Bool {
+            return max > num && min <= num
+        }
     }
     
     fileprivate var pageRanges: [PageRange] = []
     var beginningContentOffsetPriorToSwipe: CGPoint = CGPoint.zero
+    var isAtFinalPage: Bool {
+        get {
+            return pageRanges.last?.contains(num: contentOffset.y) ?? false
+        }
+    }
     
     init(imageFiles: [Any], delegate: UIScrollViewDelegate, frame: CGRect) {
         super.init(frame: frame)
         contentSize = CGSize(width: frame.width, height: 0)
         self.delegate = delegate
-        decelerationRate = UIScrollViewDecelerationRateFast
+//        decelerationRate = UIScrollViewDecelerationRateFast
         addImageHolders(imageFiles: imageFiles)
     }
     
@@ -104,7 +113,7 @@ extension BumbleScrollView {
     fileprivate func getRanges() -> (previousRange:PageRange?, currentRange: PageRange?, followingRange: PageRange?) {
         let currentHeightPosition = beginningContentOffsetPriorToSwipe.y
         let index = pageRanges.index { (pageRange: PageRange) -> Bool in
-            return pageRange.max > currentHeightPosition && pageRange.min <= currentHeightPosition
+            return pageRange.contains(num: currentHeightPosition)
         }
         
         var previousRange: PageRange? = nil

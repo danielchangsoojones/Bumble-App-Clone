@@ -16,7 +16,8 @@ class CardDetailBackgroundHolderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.purple
-//        self.alpha = 0.2
+        self.alpha = 0.2
+        isUserInteractionEnabled = false
         cardDetailSetup()
         addPanGesture()
     }
@@ -34,7 +35,6 @@ class CardDetailBackgroundHolderView: UIView {
     
     fileprivate func addPanGesture() {
         let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
-//        self.isUserInteractionEnabled = false
         self.addGestureRecognizer(pan)
         
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
@@ -60,7 +60,7 @@ class CardDetailBackgroundHolderView: UIView {
         }
     }
     
-    fileprivate func animateDetailView(pointOfTouch: CGPoint) {
+    func animateDetailView(pointOfTouch: CGPoint) {
             UIView.animate(withDuration: 0.3, animations: {
                 //open being when the cardDetail is showing its inner contents
                 let openY = self.theCardDetailView.maxFrame.minY
