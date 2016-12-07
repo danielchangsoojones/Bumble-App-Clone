@@ -10,16 +10,6 @@ import Foundation
 import UIKit
 
 class CardDetailView: UIView {    
-    var isAtMinimumSize: Bool {
-        get {
-            return self.frame == originalFrame
-        }
-    }
-    var isAtMaximumSize: Bool {
-        get {
-            return self.frame == maxFrame
-        }
-    }
     var insetDifference: CGFloat {
         get {
             return originalFrameInset - maxFrameInset
@@ -32,7 +22,7 @@ class CardDetailView: UIView {
     }
     var isOpen: Bool {
         get {
-            return !isAtMinimumSize
+            return self.frame != originalFrame
         }
     }
     
