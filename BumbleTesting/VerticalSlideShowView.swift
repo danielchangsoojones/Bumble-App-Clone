@@ -26,23 +26,7 @@ class VerticalSlideShowView: UIView {
         self.backgroundColor = UIColor.green
         scrollViewSetup(imageFiles: imageFiles)
         infoHolderViewSetup()
-        
-        let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
-        pan.delegate = self
-        //        self.isUserInteractionEnabled = false
-        self.addGestureRecognizer(pan)
-        
-        theBumbleScrollView.panGestureRecognizer.require(toFail: pan)
-
-    }
-    
-    func isPanning(pan: UIPanGestureRecognizer) {
-        let pointOfTouch = pan.location(in: self)
-        
-        if let cardPan = pan as? CardPanGestureRecognizer {
-            theCardDetailBackgroundHolderView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
-            cardPan.haveStartedCardOpenDrag = theCardDetailView.isOpen
-        }
+        addPanGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,6 +80,26 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
 }
 
 extension VerticalSlideShowView: UIGestureRecognizerDelegate {
+    fileprivate func addPanGesture() {
+        let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+        pan.delegate = self
+        self.addGestureRecognizer(pan)
+        //One of the most important lines to make the Bumble scroll view work with the pan gesture on top of it. The scroll view pan gesture only starts receiving the touch, once this pan has failed, so in my subclass, I just tell it when to fail (based on direction, etc.). And when this failure occurs, then the scrollView is waiting to receive the touches instead. So, this pan gesture gets first rights to the touches, but if it fails then the scroll view gets to use the touches.
+        theBumbleScrollView.panGestureRecognizer.require(toFail: pan)
+    }
+    
+    func isPanning(pan: UIPanGestureRecognizer) {
+        let pointOfTouch = pan.location(in: self)
+        
+        if let cardPan = pan as? CardPanGestureRecognizer {
+            theCardDetailBackgroundHolderView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
+            
+            if pan.state == .ended {
+                cardPan.haveStartedCardOpenDrag = theCardDetailView.isOpen
+            }
+        }
+    }
+    
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if theBumbleScrollView.isAtFinalPage || theCardDetailView.isOpen {
             return true

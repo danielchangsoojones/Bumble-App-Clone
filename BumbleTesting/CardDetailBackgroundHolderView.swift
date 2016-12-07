@@ -11,12 +11,11 @@ import Cheetah
 
 class CardDetailBackgroundHolderView: UIView {
     var theCardDetailView: CardDetailView!
-    
+    let minAlpha: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.purple
-        self.alpha = 0.2
+        self.backgroundColor = UIColor.black.withAlphaComponent(minAlpha)
         isUserInteractionEnabled = false
         cardDetailSetup()
         addTapGesture()
@@ -97,7 +96,15 @@ class CardDetailBackgroundHolderView: UIView {
                 let percentOpened = (closedY - currentTouchY) / (closedY - openY)
                 let inset = (1 - percentOpened) * (openInset - closedInset) + closedInset
                 self.theCardDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
+                self.updateAlpha(percentOpened: percentOpened)
             })
+    }
+    
+    fileprivate func updateAlpha(percentOpened: CGFloat) {
+        let maxAlpha: CGFloat = 0.8
+        let alphaDifference = maxAlpha - minAlpha
+        let targetAlpha = (alphaDifference * percentOpened) + minAlpha
+        self.backgroundColor = self.backgroundColor?.withAlphaComponent(targetAlpha)
     }
 
 }
