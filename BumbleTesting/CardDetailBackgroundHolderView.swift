@@ -19,6 +19,7 @@ class CardDetailBackgroundHolderView: UIView {
         cardDetailSetup()
         addCardDetailTapGesture()
         addBackgroundTapGesture()
+        addPan()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,9 +35,7 @@ class CardDetailBackgroundHolderView: UIView {
     
     //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if theCardDetailView.frame.contains(point) {
-            return true
-        } else if theCardDetailView.isOpen {
+        if theCardDetailView.frame.contains(point) || theCardDetailView.isOpen {
             return true
         }
         //pass the tap onto other views
@@ -67,6 +66,25 @@ extension CardDetailBackgroundHolderView {
 
 //handlind pan
 extension CardDetailBackgroundHolderView {
+    func addPan() {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+        self.addGestureRecognizer(pan)
+    }
+    
+    func isPanning(pan: UIPanGestureRecognizer) {
+        let pointOfTouch = pan.location(in: self)
+        let velocity = pan.velocity(in: self)
+        
+        var direction: UISwipeGestureRecognizerDirection?
+        if velocity.y < 0 {
+            direction = .up
+        } else if velocity.y > 0 {
+            direction = .down
+        }
+        
+        self.pan(touchPoint: pointOfTouch, direction: direction, state: pan.state)
+    }
+    
     func pan(touchPoint: CGPoint, direction: UISwipeGestureRecognizerDirection?, state: UIGestureRecognizerState) {
         if state == .ended {
             if let direction = direction {

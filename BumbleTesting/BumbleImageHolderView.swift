@@ -21,7 +21,6 @@ class BumbleImageHolderView: UIView {
         theImageView = UIImageView(image: image)
         self.addSubview(theImageView)
         theImageView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().inset(haveBottomInset ? 3 : 0)
