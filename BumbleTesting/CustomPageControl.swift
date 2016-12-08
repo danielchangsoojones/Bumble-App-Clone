@@ -10,17 +10,30 @@ import Foundation
 import UIKit
 
 class CustomPageControl: FilledPageControl {
-    override var tintColor: UIColor! {
+    override var pageCount: Int {
         didSet {
             makeLastBubbleColor()
         }
     }
     
-    init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        pageCount = 5
-        makeLastBubbleColor()
-        
+    override var progress: CGFloat {
+        didSet {
+            previousProgress = oldValue
+        }
+    }
+    
+    var previousProgress: CGFloat = 0 {
+        didSet (oldValue) {
+            if previousProgress == progress {
+                //when we are sliding the cardDetailView, don't let it slide and set the previous progress to itself because then it would go back to its own bubble when we dismiss it. This protects that. 
+                previousProgress = oldValue
+            }
+        }
+    }
+    
+    init(numberOfPages: Int) {
+        super.init(frame: CGRect.zero)
+        pageCount = numberOfPages
     }
     
     required init?(coder aDecoder: NSCoder) {

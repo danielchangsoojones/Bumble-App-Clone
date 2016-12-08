@@ -31,6 +31,14 @@ class BumbleScrollView: UIScrollView {
             return pageRanges.last?.contains(num: contentOffset.y) ?? false
         }
     }
+    var currentPage: Int {
+        get {
+            let index = pageRanges.index { (pageRange: PageRange) -> Bool in
+                return pageRange.contains(num: contentOffset.y)
+            }
+            return index ?? 0
+        }
+    }
     
     init(imageFiles: [Any], delegate: UIScrollViewDelegate, frame: CGRect) {
         super.init(frame: frame)

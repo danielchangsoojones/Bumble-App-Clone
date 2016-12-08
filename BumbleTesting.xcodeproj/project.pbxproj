@@ -56,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		922F8B1E1DF9016600AF0552 /* Page Control */ = {
+			isa = PBXGroup;
+			children = (
+				922F8B1A1DF8F9A900AF0552 /* CustomPageControl.swift */,
+				922F8B181DF8F98900AF0552 /* FilledPageControl.swift */,
+			);
+			name = "Page Control";
+			sourceTree = "<group>";
+		};
 		92836A4F1DF5BCA10040B90F = {
 			isa = PBXGroup;
 			children = (
@@ -102,11 +111,10 @@
 		92836A761DF6595C0040B90F /* Card Detail */ = {
 			isa = PBXGroup;
 			children = (
+				922F8B1E1DF9016600AF0552 /* Page Control */,
 				92836A741DF611C60040B90F /* CardDetailView.swift */,
 				92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */,
 				92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */,
-				922F8B181DF8F98900AF0552 /* FilledPageControl.swift */,
-				922F8B1A1DF8F9A900AF0552 /* CustomPageControl.swift */,
 			);
 			name = "Card Detail";
 			sourceTree = "<group>";

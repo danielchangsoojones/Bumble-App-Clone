@@ -24,7 +24,7 @@ class VerticalSlideShowView: UIView {
     init(imageFiles: [Any], frame: CGRect) {
         super.init(frame: frame)
         scrollViewSetup(imageFiles: imageFiles)
-        infoHolderViewSetup()
+        infoHolderViewSetup(numberOfPhotos: imageFiles.count)
         addPanGesture()
     }
     
@@ -32,8 +32,8 @@ class VerticalSlideShowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func infoHolderViewSetup() {
-        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds)
+    fileprivate func infoHolderViewSetup(numberOfPhotos: Int) {
+        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds, numberOfPhotos: numberOfPhotos)
         theCardDetailView = theCardDetailBackgroundHolderView.theCardDetailView
         self.addSubview(theCardDetailBackgroundHolderView)
     }
@@ -61,6 +61,10 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
         default:
             break
         }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        theCardDetailBackgroundHolderView.movePageControl(to: CGFloat(theBumbleScrollView.currentPage))
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

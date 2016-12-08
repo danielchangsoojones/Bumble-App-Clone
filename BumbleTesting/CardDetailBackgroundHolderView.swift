@@ -14,14 +14,14 @@ class CardDetailBackgroundHolderView: UIView {
     var pageControl: CustomPageControl!
     let minAlpha: CGFloat = 0
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, numberOfPhotos: Int) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.black.withAlphaComponent(minAlpha)
         cardDetailSetup()
         addCardDetailTapGesture()
         addBackgroundTapGesture()
         addPan()
-        pageControlSetup()
+        pageControlSetup(numberOfPhotos: numberOfPhotos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,17 +35,6 @@ class CardDetailBackgroundHolderView: UIView {
         theCardDetailView.setMaxFrame()
     }
     
-    fileprivate func pageControlSetup() {
-        pageControl = CustomPageControl()
-        self.addSubview(pageControl)
-        pageControl.snp.makeConstraints { (make) in
-            make.trailing.equalTo(self)
-            make.top.equalTo(self)
-            make.height.equalTo(100)
-            make.width.equalTo(100)
-        }
-    }
-    
     //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if theCardDetailView.frame.contains(point) || theCardDetailView.isOpen {
@@ -53,6 +42,26 @@ class CardDetailBackgroundHolderView: UIView {
         }
         //pass the tap onto other views
         return false
+    }
+}
+
+//page controller extension
+extension CardDetailBackgroundHolderView {
+    fileprivate func pageControlSetup(numberOfPhotos: Int) {
+        pageControl = CustomPageControl(numberOfPages: numberOfPhotos + 1) //+1 for the cardDetailCircle
+        self.addSubview(pageControl)
+        pageControl.snp.makeConstraints { (make) in
+            make.trailing.equalTo(self)
+            make.top.equalTo(self)
+        }
+    }
+    
+    func movePageControl(to page: CGFloat, goToFinalDot: Bool = false) {
+        if goToFinalDot {
+            pageControl.progress = CGFloat(pageControl.pageCount - 1)
+        } else {
+            pageControl.progress = page
+        }
     }
 }
 
@@ -74,7 +83,6 @@ extension CardDetailBackgroundHolderView {
         } else {
             animateToMaxFrame()
         }
-        pageControl.progress += 1
     }
 }
 
@@ -154,6 +162,8 @@ extension CardDetailBackgroundHolderView {
             let inset = (1 - percentOpened) * (openInset - closedInset) + closedInset
             self.theCardDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
             self.updateAlpha(percentOpened: percentOpened)
+        }, completion: { (success: Bool) in
+            self.updatePageControl()
         })
     }
     
@@ -162,5 +172,13 @@ extension CardDetailBackgroundHolderView {
         let alphaDifference = maxAlpha - minAlpha
         let targetAlpha = (alphaDifference * percentOpened) + minAlpha
         self.backgroundColor = self.backgroundColor?.withAlphaComponent(targetAlpha)
+    }
+    
+    fileprivate func updatePageControl() {
+        if theCardDetailView.frame == theCardDetailView.maxFrame {
+            self.movePageControl(to: -1, goToFinalDot: true)
+        } else if theCardDetailView.frame == theCardDetailView.originalFrame {
+            self.movePageControl(to: pageControl.previousProgress)
+        }
     }
 }
