@@ -1,5 +1,5 @@
 //
-//  CardPanGestureRecognizer.swift
+//  BumblePanGestureRecognizer.swift
 //  BumbleTesting
 //
 //  Created by Daniel Jones on 12/5/16.
@@ -8,7 +8,7 @@
 
 import UIKit.UIGestureRecognizerSubclass
 
-class CardPanGestureRecognizer: UIPanGestureRecognizer {
+class BumblePanGestureRecognizer: UIPanGestureRecognizer {
     var direction: UISwipeGestureRecognizerDirection? {
         get {
             let theVelocity : CGPoint = velocity(in: self.view!)

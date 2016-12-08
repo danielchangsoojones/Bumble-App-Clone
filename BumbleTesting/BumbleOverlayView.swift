@@ -1,5 +1,5 @@
 //
-//  CardDetailBackgroundHolderView.swift
+//  BumbleOverlayView.swift
 //  BumbleTesting
 //
 //  Created by Daniel Jones on 12/5/16.
@@ -9,8 +9,8 @@
 import UIKit
 import SnapKit
 
-class CardDetailBackgroundHolderView: UIView {
-    var theCardDetailView: CardDetailView!
+class BumbleOverlayView: UIView {
+    var theBumbleDetailView: BumbleDetailView!
     var pageControl: CustomPageControl!
     let minAlpha: CGFloat = 0
     
@@ -29,15 +29,15 @@ class CardDetailBackgroundHolderView: UIView {
     }
     
     fileprivate func cardDetailSetup() {
-        theCardDetailView = CardDetailView(frameWidth: self.frame.width, frameMinY: self.bounds.maxY - 100, height: 100)
-        theCardDetailView.backgroundColor = UIColor.red
-        self.addSubview(theCardDetailView)
-        theCardDetailView.setMaxFrame()
+        theBumbleDetailView = BumbleDetailView(frameWidth: self.frame.width, frameMinY: self.bounds.maxY - 100, height: 100)
+        theBumbleDetailView.backgroundColor = UIColor.red
+        self.addSubview(theBumbleDetailView)
+        theBumbleDetailView.setMaxFrame()
     }
     
     //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if theCardDetailView.frame.contains(point) || theCardDetailView.isOpen {
+        if theBumbleDetailView.frame.contains(point) || theBumbleDetailView.isOpen {
             return true
         }
         //pass the tap onto other views
@@ -46,7 +46,7 @@ class CardDetailBackgroundHolderView: UIView {
 }
 
 //page controller extension
-extension CardDetailBackgroundHolderView {
+extension BumbleOverlayView {
     fileprivate func pageControlSetup(numberOfPhotos: Int) {
         pageControl = CustomPageControl(numberOfPages: numberOfPhotos + 1) //+1 for the cardDetailCircle
         self.addSubview(pageControl)
@@ -66,7 +66,7 @@ extension CardDetailBackgroundHolderView {
 }
 
 //handle tap
-extension CardDetailBackgroundHolderView {
+extension BumbleOverlayView {
     fileprivate func addBackgroundTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
         self.addGestureRecognizer(tap)
@@ -74,11 +74,11 @@ extension CardDetailBackgroundHolderView {
     
     fileprivate func addCardDetailTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleDetailTap(_:)))
-        theCardDetailView.addGestureRecognizer(tap)
+        theBumbleDetailView.addGestureRecognizer(tap)
     }
     
     func handleDetailTap(_ sender: UIGestureRecognizer) {
-        if theCardDetailView.isOpen {
+        if theBumbleDetailView.isOpen {
             animateToOriginalFrame()
         } else {
             animateToMaxFrame()
@@ -87,7 +87,7 @@ extension CardDetailBackgroundHolderView {
 }
 
 //handlind pan
-extension CardDetailBackgroundHolderView {
+extension BumbleOverlayView {
     func addPan() {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
         self.addGestureRecognizer(pan)
@@ -128,7 +128,7 @@ extension CardDetailBackgroundHolderView {
     }
     
     fileprivate func finishNonVelocityDrag() {
-        if theCardDetailView.frame.minY <= theCardDetailView.finishSwipeThresholdY {
+        if theBumbleDetailView.frame.minY <= theBumbleDetailView.finishSwipeThresholdY {
             animateToMaxFrame()
         } else {
             animateToOriginalFrame()
@@ -136,20 +136,20 @@ extension CardDetailBackgroundHolderView {
     }
     
     fileprivate func animateToMaxFrame() {
-        animateDetailView(pointOfTouch: theCardDetailView.maxFrame.origin)
+        animateDetailView(pointOfTouch: theBumbleDetailView.maxFrame.origin)
     }
     
     fileprivate func animateToOriginalFrame() {
-        animateDetailView(pointOfTouch: theCardDetailView.originalFrame.origin)
+        animateDetailView(pointOfTouch: theBumbleDetailView.originalFrame.origin)
     }
     
     fileprivate func animateDetailView(pointOfTouch: CGPoint) {
         UIView.animate(withDuration: 0.3, animations: {
             //open being when the cardDetail is showing its inner contents
-            let openY = self.theCardDetailView.maxFrame.minY
-            let closedY = self.theCardDetailView.originalFrame.minY
-            let openInset = self.theCardDetailView.originalFrameInset
-            let closedInset = self.theCardDetailView.maxFrameInset
+            let openY = self.theBumbleDetailView.maxFrame.minY
+            let closedY = self.theBumbleDetailView.originalFrame.minY
+            let openInset = self.theBumbleDetailView.originalFrameInset
+            let closedInset = self.theBumbleDetailView.maxFrameInset
             
             var currentTouchY = pointOfTouch.y
             if currentTouchY < openY {
@@ -160,7 +160,7 @@ extension CardDetailBackgroundHolderView {
             
             let percentOpened = (closedY - currentTouchY) / (closedY - openY)
             let inset = (1 - percentOpened) * (openInset - closedInset) + closedInset
-            self.theCardDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
+            self.theBumbleDetailView.frame = CGRect(x: inset, y: currentTouchY, width: self.frame.maxX - inset * 2, height: self.frame.maxY - currentTouchY - inset)
             self.updateAlpha(percentOpened: percentOpened)
         }, completion: { (success: Bool) in
             self.updatePageControl()
@@ -175,9 +175,9 @@ extension CardDetailBackgroundHolderView {
     }
     
     fileprivate func updatePageControl() {
-        if theCardDetailView.frame == theCardDetailView.maxFrame {
+        if theBumbleDetailView.frame == theBumbleDetailView.maxFrame {
             self.movePageControl(to: -1, goToFinalDot: true)
-        } else if theCardDetailView.frame == theCardDetailView.originalFrame {
+        } else if theBumbleDetailView.frame == theBumbleDetailView.originalFrame {
             self.movePageControl(to: pageControl.previousProgress)
         }
     }

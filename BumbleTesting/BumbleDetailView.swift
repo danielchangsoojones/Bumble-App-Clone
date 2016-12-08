@@ -1,5 +1,5 @@
 //
-//  CardDetailView.swift
+//  BumbleDetailView.swift
 //  BumbleTesting
 //
 //  Created by Daniel Jones on 12/5/16.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CardDetailView: UIView {    
+class BumbleDetailView: UIView {    
     var insetDifference: CGFloat {
         get {
             return originalFrameInset - maxFrameInset

@@ -18,8 +18,8 @@ class VerticalSlideShowView: UIView {
     
     fileprivate var scrollDirection: Direction = .zero
     var theBumbleScrollView: BumbleScrollView!
-    var theCardDetailView: CardDetailView!
-    var theCardDetailBackgroundHolderView: CardDetailBackgroundHolderView!
+    var theBumbleDetailView: BumbleDetailView!
+    var theBumbleOverlayView: BumbleOverlayView!
     
     init(imageFiles: [Any], frame: CGRect) {
         super.init(frame: frame)
@@ -33,9 +33,9 @@ class VerticalSlideShowView: UIView {
     }
     
     fileprivate func infoHolderViewSetup(numberOfPhotos: Int) {
-        theCardDetailBackgroundHolderView = CardDetailBackgroundHolderView(frame: self.bounds, numberOfPhotos: numberOfPhotos)
-        theCardDetailView = theCardDetailBackgroundHolderView.theCardDetailView
-        self.addSubview(theCardDetailBackgroundHolderView)
+        theBumbleOverlayView = BumbleOverlayView(frame: self.bounds, numberOfPhotos: numberOfPhotos)
+        theBumbleDetailView = theBumbleOverlayView.theBumbleDetailView
+        self.addSubview(theBumbleOverlayView)
     }
     
     fileprivate func scrollViewSetup(imageFiles: [Any]) {
@@ -64,7 +64,7 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        theCardDetailBackgroundHolderView.movePageControl(to: CGFloat(theBumbleScrollView.currentPage))
+        theBumbleOverlayView.movePageControl(to: CGFloat(theBumbleScrollView.currentPage))
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -84,27 +84,27 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
 
 extension VerticalSlideShowView: UIGestureRecognizerDelegate {
     fileprivate func addPanGesture() {
-        let cardPan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
-        cardPan.delegate = self
-        self.addGestureRecognizer(cardPan)
+        let bumblePan = BumblePanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+        bumblePan.delegate = self
+        self.addGestureRecognizer(bumblePan)
         //One of the most important lines to make the Bumble scroll view work with the pan gesture on top of it. The scroll view pan gesture only starts receiving the touch, once this pan has failed, so in my subclass, I just tell it when to fail (based on direction, etc.). And when this failure occurs, then the scrollView is waiting to receive the touches instead. So, this pan gesture gets first rights to the touches, but if it fails then the scroll view gets to use the touches.
-        theBumbleScrollView.panGestureRecognizer.require(toFail: cardPan)
+        theBumbleScrollView.panGestureRecognizer.require(toFail: bumblePan)
     }
     
     func isPanning(pan: UIPanGestureRecognizer) {
         let pointOfTouch = pan.location(in: self)
         
-        if let cardPan = pan as? CardPanGestureRecognizer {
-            theCardDetailBackgroundHolderView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
+        if let cardPan = pan as? BumblePanGestureRecognizer {
+            theBumbleOverlayView.pan(touchPoint: pointOfTouch, direction: cardPan.direction, state: pan.state)
             
             if pan.state == .ended || pan.state == .changed {
-                cardPan.haveStartedCardOpenDrag = theCardDetailView.isOpen
+                cardPan.haveStartedCardOpenDrag = theBumbleDetailView.isOpen
             }
         }
     }
     
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return theBumbleScrollView.isAtFinalPage || theCardDetailView.isOpen
+        return theBumbleScrollView.isAtFinalPage || theBumbleDetailView.isOpen
     }
 }
 

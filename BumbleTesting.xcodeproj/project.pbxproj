@@ -17,9 +17,9 @@
 		92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */; };
 		92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */; };
 		92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A721DF5F2B30040B90F /* BumbleScrollView.swift */; };
-		92836A751DF611C60040B90F /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A741DF611C60040B90F /* CardDetailView.swift */; };
-		92836A781DF65D660040B90F /* CardDetailBackgroundHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */; };
-		92836A7A1DF65E6F0040B90F /* CardPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */; };
+		92836A751DF611C60040B90F /* BumbleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A741DF611C60040B90F /* BumbleDetailView.swift */; };
+		92836A781DF65D660040B90F /* BumbleOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A771DF65D660040B90F /* BumbleOverlayView.swift */; };
+		92836A7A1DF65E6F0040B90F /* BumblePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A791DF65E6F0040B90F /* BumblePanGestureRecognizer.swift */; };
 		E629FC2CB9B16D577522718A /* Pods_BumbleTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +34,11 @@
 		92836A651DF5BCA20040B90F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92836A671DF5BCA20040B90F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleImageHolderView.swift; sourceTree = "<group>"; };
-		92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlideShowView.swift; sourceTree = "<group>"; };
+		92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VerticalSlideShowView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		92836A721DF5F2B30040B90F /* BumbleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumbleScrollView.swift; sourceTree = "<group>"; };
-		92836A741DF611C60040B90F /* CardDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
-		92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailBackgroundHolderView.swift; sourceTree = "<group>"; };
-		92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		92836A741DF611C60040B90F /* BumbleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BumbleDetailView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		92836A771DF65D660040B90F /* BumbleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BumbleOverlayView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		92836A791DF65E6F0040B90F /* BumblePanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BumblePanGestureRecognizer.swift; sourceTree = "<group>"; };
 		93C074BC1EB8AD2A6BC4DAE3 /* Pods-BumbleTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.debug.xcconfig"; sourceTree = "<group>"; };
 		BF1D3EB23D9CD9298518296F /* Pods_BumbleTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumbleTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0212F2D5C73850721D35C32 /* Pods-BumbleTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumbleTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-BumbleTesting/Pods-BumbleTesting.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +65,15 @@
 			name = "Page Control";
 			sourceTree = "<group>";
 		};
+		92371D391DF9151400BE0A92 /* Scroll View */ = {
+			isa = PBXGroup;
+			children = (
+				92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */,
+				92836A721DF5F2B30040B90F /* BumbleScrollView.swift */,
+			);
+			name = "Scroll View";
+			sourceTree = "<group>";
+		};
 		92836A4F1DF5BCA10040B90F = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +95,7 @@
 		92836A5A1DF5BCA20040B90F /* BumbleTesting */ = {
 			isa = PBXGroup;
 			children = (
-				92836A6D1DF5BCDD0040B90F /* Views */,
+				92836A6D1DF5BCDD0040B90F /* Bumble */,
 				92836A5B1DF5BCA20040B90F /* AppDelegate.swift */,
 				92836A5D1DF5BCA20040B90F /* ViewController.swift */,
 				92836A5F1DF5BCA20040B90F /* Main.storyboard */,
@@ -97,26 +106,25 @@
 			path = BumbleTesting;
 			sourceTree = "<group>";
 		};
-		92836A6D1DF5BCDD0040B90F /* Views */ = {
+		92836A6D1DF5BCDD0040B90F /* Bumble */ = {
 			isa = PBXGroup;
 			children = (
-				92836A761DF6595C0040B90F /* Card Detail */,
-				92836A6E1DF5BD0A0040B90F /* BumbleImageHolderView.swift */,
+				92371D391DF9151400BE0A92 /* Scroll View */,
+				92836A761DF6595C0040B90F /* Overlay */,
 				92836A701DF5BFA10040B90F /* VerticalSlideShowView.swift */,
-				92836A721DF5F2B30040B90F /* BumbleScrollView.swift */,
 			);
-			name = Views;
+			name = Bumble;
 			sourceTree = "<group>";
 		};
-		92836A761DF6595C0040B90F /* Card Detail */ = {
+		92836A761DF6595C0040B90F /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
 				922F8B1E1DF9016600AF0552 /* Page Control */,
-				92836A741DF611C60040B90F /* CardDetailView.swift */,
-				92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */,
-				92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */,
+				92836A741DF611C60040B90F /* BumbleDetailView.swift */,
+				92836A771DF65D660040B90F /* BumbleOverlayView.swift */,
+				92836A791DF65E6F0040B90F /* BumblePanGestureRecognizer.swift */,
 			);
-			name = "Card Detail";
+			name = Overlay;
 			sourceTree = "<group>";
 		};
 		C0D6DC4F6DD131A391EAFA56 /* Frameworks */ = {
@@ -262,12 +270,12 @@
 			files = (
 				922F8B191DF8F98900AF0552 /* FilledPageControl.swift in Sources */,
 				92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */,
-				92836A7A1DF65E6F0040B90F /* CardPanGestureRecognizer.swift in Sources */,
-				92836A781DF65D660040B90F /* CardDetailBackgroundHolderView.swift in Sources */,
+				92836A7A1DF65E6F0040B90F /* BumblePanGestureRecognizer.swift in Sources */,
+				92836A781DF65D660040B90F /* BumbleOverlayView.swift in Sources */,
 				92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */,
 				922F8B1B1DF8F9A900AF0552 /* CustomPageControl.swift in Sources */,
 				92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */,
-				92836A751DF611C60040B90F /* CardDetailView.swift in Sources */,
+				92836A751DF611C60040B90F /* BumbleDetailView.swift in Sources */,
 				92836A5E1DF5BCA20040B90F /* ViewController.swift in Sources */,
 				92836A5C1DF5BCA20040B90F /* AppDelegate.swift in Sources */,
 			);
