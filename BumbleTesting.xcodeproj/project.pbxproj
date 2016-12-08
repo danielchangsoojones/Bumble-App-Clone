@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922F8B191DF8F98900AF0552 /* FilledPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F8B181DF8F98900AF0552 /* FilledPageControl.swift */; };
+		922F8B1B1DF8F9A900AF0552 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F8B1A1DF8F9A900AF0552 /* CustomPageControl.swift */; };
 		92836A5C1DF5BCA20040B90F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A5B1DF5BCA20040B90F /* AppDelegate.swift */; };
 		92836A5E1DF5BCA20040B90F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92836A5D1DF5BCA20040B90F /* ViewController.swift */; };
 		92836A611DF5BCA20040B90F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92836A5F1DF5BCA20040B90F /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		922F8B181DF8F98900AF0552 /* FilledPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilledPageControl.swift; sourceTree = "<group>"; };
+		922F8B1A1DF8F9A900AF0552 /* CustomPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
 		92836A581DF5BCA20040B90F /* BumbleTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumbleTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92836A5B1DF5BCA20040B90F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92836A5D1DF5BCA20040B90F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 				92836A741DF611C60040B90F /* CardDetailView.swift */,
 				92836A771DF65D660040B90F /* CardDetailBackgroundHolderView.swift */,
 				92836A791DF65E6F0040B90F /* CardPanGestureRecognizer.swift */,
+				922F8B181DF8F98900AF0552 /* FilledPageControl.swift */,
+				922F8B1A1DF8F9A900AF0552 /* CustomPageControl.swift */,
 			);
 			name = "Card Detail";
 			sourceTree = "<group>";
@@ -246,10 +252,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922F8B191DF8F98900AF0552 /* FilledPageControl.swift in Sources */,
 				92836A6F1DF5BD0A0040B90F /* BumbleImageHolderView.swift in Sources */,
 				92836A7A1DF65E6F0040B90F /* CardPanGestureRecognizer.swift in Sources */,
 				92836A781DF65D660040B90F /* CardDetailBackgroundHolderView.swift in Sources */,
 				92836A731DF5F2B30040B90F /* BumbleScrollView.swift in Sources */,
+				922F8B1B1DF8F9A900AF0552 /* CustomPageControl.swift in Sources */,
 				92836A711DF5BFA10040B90F /* VerticalSlideShowView.swift in Sources */,
 				92836A751DF611C60040B90F /* CardDetailView.swift in Sources */,
 				92836A5E1DF5BCA20040B90F /* ViewController.swift in Sources */,

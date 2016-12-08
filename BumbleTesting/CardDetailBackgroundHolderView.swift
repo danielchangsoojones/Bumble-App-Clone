@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import Cheetah
+import SnapKit
 
 class CardDetailBackgroundHolderView: UIView {
     var theCardDetailView: CardDetailView!
+    var pageControl: CustomPageControl!
     let minAlpha: CGFloat = 0
     
     override init(frame: CGRect) {
@@ -20,6 +21,7 @@ class CardDetailBackgroundHolderView: UIView {
         addCardDetailTapGesture()
         addBackgroundTapGesture()
         addPan()
+        pageControlSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +33,17 @@ class CardDetailBackgroundHolderView: UIView {
         theCardDetailView.backgroundColor = UIColor.red
         self.addSubview(theCardDetailView)
         theCardDetailView.setMaxFrame()
+    }
+    
+    fileprivate func pageControlSetup() {
+        pageControl = CustomPageControl()
+        self.addSubview(pageControl)
+        pageControl.snp.makeConstraints { (make) in
+            make.trailing.equalTo(self)
+            make.top.equalTo(self)
+            make.height.equalTo(100)
+            make.width.equalTo(100)
+        }
     }
     
     //allows us to check where the hit occurred and then decide if we want userInteraction for that point, or let it pass on to other views behind it. Basically like isUserInteractionEnabled, but we can choose individual points to be enabled.
@@ -61,6 +74,7 @@ extension CardDetailBackgroundHolderView {
         } else {
             animateToMaxFrame()
         }
+        pageControl.progress += 1
     }
 }
 

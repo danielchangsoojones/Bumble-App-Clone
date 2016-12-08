@@ -80,11 +80,11 @@ extension VerticalSlideShowView: UIScrollViewDelegate {
 
 extension VerticalSlideShowView: UIGestureRecognizerDelegate {
     fileprivate func addPanGesture() {
-        let pan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
-        pan.delegate = self
-        self.addGestureRecognizer(pan)
+        let cardPan = CardPanGestureRecognizer(target: self, action: #selector(self.isPanning(pan:)))
+        cardPan.delegate = self
+        self.addGestureRecognizer(cardPan)
         //One of the most important lines to make the Bumble scroll view work with the pan gesture on top of it. The scroll view pan gesture only starts receiving the touch, once this pan has failed, so in my subclass, I just tell it when to fail (based on direction, etc.). And when this failure occurs, then the scrollView is waiting to receive the touches instead. So, this pan gesture gets first rights to the touches, but if it fails then the scroll view gets to use the touches.
-        theBumbleScrollView.panGestureRecognizer.require(toFail: pan)
+        theBumbleScrollView.panGestureRecognizer.require(toFail: cardPan)
     }
     
     func isPanning(pan: UIPanGestureRecognizer) {
@@ -100,11 +100,7 @@ extension VerticalSlideShowView: UIGestureRecognizerDelegate {
     }
     
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if theBumbleScrollView.isAtFinalPage || theCardDetailView.isOpen {
-            return true
-        } else {
-            return false
-        }
+        return theBumbleScrollView.isAtFinalPage || theCardDetailView.isOpen
     }
 }
 
