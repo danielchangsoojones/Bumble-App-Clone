@@ -12,16 +12,19 @@ import SnapKit
 class BumbleImageHolderView: UIView {
     var theImageView: UIImageView!
     
-    init(image: UIImage, frame: CGRect) {
+    init(image: UIImage, frame: CGRect, haveBottomInset: Bool) {
         super.init(frame: frame)
-        imageViewSetup(image: image)
+        imageViewSetup(image: image, haveBottomInset: haveBottomInset)
     }
     
-    private func imageViewSetup(image: UIImage) {
+    private func imageViewSetup(image: UIImage, haveBottomInset: Bool) {
         theImageView = UIImageView(image: image)
         self.addSubview(theImageView)
         theImageView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().inset(haveBottomInset ? 3 : 0)
         }
     }
     

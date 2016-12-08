@@ -63,9 +63,9 @@ class BumbleScrollView: UIScrollView {
 extension BumbleScrollView {
     fileprivate func addImageHolders(imageFiles: [Any]) {
         var previousViewHeight: CGFloat = 0
-        for file in imageFiles {
+        for (index, file) in imageFiles.enumerated() {
             if let image = file as? UIImage {
-                let imageHolderView = BumbleImageHolderView(image: image, frame: CGRect(x: 0, y: previousViewHeight, width: self.frame.width, height: self.frame.height))
+                let imageHolderView = BumbleImageHolderView(image: image, frame: CGRect(x: 0, y: previousViewHeight, width: self.frame.width, height: self.frame.height), haveBottomInset: index != imageFiles.count - 1)
                 addViewToScrollView(aView: imageHolderView)
                 previousViewHeight += imageHolderView.frame.height
                 pageRanges.append(PageRange(max: imageHolderView.frame.maxY, min: imageHolderView.frame.minY))

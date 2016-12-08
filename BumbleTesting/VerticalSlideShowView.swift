@@ -23,7 +23,6 @@ class VerticalSlideShowView: UIView {
     
     init(imageFiles: [Any], frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.green
         scrollViewSetup(imageFiles: imageFiles)
         infoHolderViewSetup()
         addPanGesture()
