@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:WellsLibary.gpx">
+   </FileRef>
+   <FileRef
       location = "group:BumbleTesting.xcodeproj">
    </FileRef>
    <FileRef
